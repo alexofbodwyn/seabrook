@@ -120,7 +120,9 @@ export async function sendEmail(subject:string, body:any, mutationId = 'contact'
     }
   );
 
-  console.log(data)
+  if (!data || data.errors) {
+    console.error('Error sending email:', data.errors || 'No response');
+  }
 
   return data
 }
