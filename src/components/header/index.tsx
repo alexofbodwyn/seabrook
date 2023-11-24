@@ -36,10 +36,6 @@ export default function  Header({ menuItems, pageTitle }: HeaderProps) {
             {menuItems.map((item: MenuItem, index: number) => {
               let uri = item.connectedNode.node.uri;
 
-              if (uri.length > 1) {
-                uri = uri.slice(0, -1);
-              }
-
               return (
                 <li className="ml-8" key={`mainNav-${index}`}>
                   <Link

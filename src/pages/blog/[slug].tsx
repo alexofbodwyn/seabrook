@@ -1,12 +1,28 @@
-import { GetStaticProps } from "next";
-import { GetStaticPaths } from "next";
+import { GetStaticProps, GetServerSideProps } from "next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BlogSection from "@/components/blogSection";
+import { useRouter } from "next/router";
 
 import { getPosts, getPostBySlug, getNavigation } from "@/lib/service";
 
 export default function PostDetails({ post, navigation, posts }: { post: any, navigation: any, posts: any }) {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return (
+      <div className="flex flex-col min-h-[100vh]">
+      <Header menuItems={navigation} />
+      <div className="bg-white">
+        <div className="container mx-auto py-10 max-w-[800px]">
+          <div className="[&>p]:my-4 [&>p]:text-stone-600 [&>p]:text-lg">Loading...</div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+    )
+  }
+
   return (
     <div className="flex flex-col min-h-[100vh]">
       <Header menuItems={navigation} />
@@ -22,16 +38,16 @@ export default function PostDetails({ post, navigation, posts }: { post: any, na
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPosts(100); // retrieve first 100 posts
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const posts = await getPosts(100); // retrieve first 100 posts
 
-  return {
-    paths: posts?.map((post: any) => `/blog/${post.slug}`),
-    fallback: true,
-  };
-};
+//   return {
+//     paths: posts.map((post: any) => `/blog/${post.slug}`),
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const post = await getPostBySlug(params?.slug as string);
   const navigation = await getNavigation()
   const posts = await getPosts(6); // retrieve first 100 posts
