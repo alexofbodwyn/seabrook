@@ -33,9 +33,9 @@ export default function  Header({ menuItems, pageTitle }: HeaderProps) {
         <Logo />
         <nav className="ml-auto" role="navigation">
           <ul className="flex">
-            {menuItems.map((item: MenuItem, index: number) => {
+            {!!menuItems && menuItems.map((item: MenuItem, index: number) => {
               let uri = item.connectedNode.node.uri;
-
+              if (!!uri) {
               return (
                 <li className="ml-8" key={`mainNav-${index}`}>
                   <Link
@@ -49,7 +49,8 @@ export default function  Header({ menuItems, pageTitle }: HeaderProps) {
                     {item.label}
                   </Link>
                 </li>
-              );
+              )}
+              return 
             })}
           </ul>
         </nav>
