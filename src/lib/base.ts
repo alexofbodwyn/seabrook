@@ -1,3 +1,5 @@
+import { join } from "path";
+
 const API_URL = <string>process.env.NEXT_PUBLIC_WORDPRESS_API_ENDPOINT;
 
 export async function fetchAPI(
@@ -16,6 +18,8 @@ export async function fetchAPI(
   });
 
   const json = await res.json();
+
+  console.log(json)
 
   if (json.errors) {
     console.error(json.errors);

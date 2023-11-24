@@ -22,7 +22,6 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
       Their email address is <strong>${email}</strong>. <br />
       Their contact number is <strong>${contactNumber}</strong>. <br />
       From ${company}
-      
       They'd like to know about...
       ${message}
     `;
