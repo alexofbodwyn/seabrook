@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { getContact, getNavigation } from "@/lib/service";
 import Header from "@/components/header";
 import { sendEmail } from "@/lib/service";
@@ -108,7 +108,7 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const page = await getContact();
   const navigation = await getNavigation()
 
