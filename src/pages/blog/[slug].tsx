@@ -1,4 +1,5 @@
-import { GetStaticProps, GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
+import { GetStaticPaths } from "next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BlogSection from "@/components/blogSection";
@@ -38,16 +39,16 @@ export default function PostDetails({ post, navigation, posts }: { post: any, na
   );
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const posts = await getPosts(100); // retrieve first 100 posts
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts(100); // retrieve first 100 posts
 
-//   return {
-//     paths: posts.map((post: any) => `/blog/${post.slug}`),
-//     fallback: true,
-//   };
-// };
+  return {
+    paths: posts.map((post: any) => `/blog/${post.slug}`),
+    fallback: false,
+  };
+};
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = await getPostBySlug(params?.slug as string);
   const navigation = await getNavigation()
   const posts = await getPosts(6); // retrieve first 100 posts

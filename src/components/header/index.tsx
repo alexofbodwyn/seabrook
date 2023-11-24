@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo } from "@/components/svg";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { sendEmail } from "../../lib/service"
@@ -24,15 +24,19 @@ interface HeaderProps {
   pageTitle?: string
 }
 
+import logoImage from "@/assets/images/logo.png";
+
 export default function  Header({ menuItems, pageTitle }: HeaderProps) {
   const pathname = usePathname();
 
   return (
     <header className="bg-gradient-to-br from-zinc-900 to-zinc-500">
       <div className="container mx-auto p-8 flex">
-        <Logo />
+        <div className="relative max-w-[260px] w-full h-[128px] mr-4">
+          <Image src={logoImage} alt="seabrook" />
+        </div>
         <nav className="ml-auto" role="navigation">
-          <ul className="flex">
+          <ul className="flex whitespace-nowrap">
             {!!menuItems && menuItems.map((item: MenuItem, index: number) => {
               let uri = item.connectedNode.node.uri;
               if (!!uri) {
@@ -41,8 +45,8 @@ export default function  Header({ menuItems, pageTitle }: HeaderProps) {
                   <Link
                     className={
                       pathname === uri
-                        ? "text-white text-xl underline underline-offset-2"
-                        : "text-white text-xl opacity-70"
+                        ? "text-white text-xl underline underline-offset-2 transition-all hover:opacity-50"
+                        : "text-white text-xl opacity-70 transition-all hover:opacity-50"
                     }
                     href={uri}
                   >

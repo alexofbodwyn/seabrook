@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { getContact, getNavigation } from "@/lib/service";
 import Header from "@/components/header";
 import { sendEmail } from "@/lib/service";
@@ -20,6 +20,9 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
     const emailContent = `
       Message received from <strong>${name}</strong>. 
       Their email address is <strong>${email}</strong>. <br />
+      Their contact number is <strong>${contactNumber}</strong>. <br />
+      From ${company}
+      
       They'd like to know about...
       ${message}
     `;
@@ -108,7 +111,7 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const page = await getContact();
   const navigation = await getNavigation()
 
@@ -116,7 +119,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       page,
       navigation
-    }
+    },
+    revalidate: 3600,
   };
 };
 

@@ -1,11 +1,10 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { getFrontPage, getNavigation, getPosts } from "@/lib/service";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BlogSection from "@/components/blogSection";
 
 export default function HomePage({ page, navigation, posts }: { page: any, navigation: any, posts: any }) {
-
 
   const firstBlock = JSON.parse(page.blocks[0].attributesJSON)
   const secondBlock = page.blocks[1].innerBlocks
@@ -44,7 +43,7 @@ export default function HomePage({ page, navigation, posts }: { page: any, navig
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const page = await getFrontPage()
   const navigation = await getNavigation()
   const posts = await getPosts(6)
@@ -54,8 +53,22 @@ export const getServerSideProps: GetServerSideProps = async () => {
       page,
       navigation,
       posts,
-    }
+    },
+    revalidate: 3600,
   };
 };
 
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const page = await getFrontPage()
+//   const navigation = await getNavigation()
+//   const posts = await getPosts(6)
+
+//   return {
+//     props: {
+//       page,
+//       navigation,
+//       posts,
+//     }
+//   };
+// };
 
