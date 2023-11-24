@@ -120,7 +120,6 @@ export async function sendEmail(subject:string, body:any, mutationId = 'contact'
     }
   );
 
-    console.log(data)
 
   return data
 }

@@ -6,7 +6,6 @@ import BlogSection from "@/components/blogSection";
 
 export default function HomePage({ page, navigation, posts }: { page: any, navigation: any, posts: any }) {
 
-  console.log(posts)
 
   const firstBlock = JSON.parse(page.blocks[0].attributesJSON)
   const secondBlock = page.blocks[1].innerBlocks
