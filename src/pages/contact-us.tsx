@@ -116,8 +116,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       page,
       navigation
-    },
-    revalidate: 3600,
+    }
   };
 };
 

@@ -54,8 +54,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       page,
       navigation,
       posts,
-    },
-    revalidate: 3600,
+    }
   };
 };
 
