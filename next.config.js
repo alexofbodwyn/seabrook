@@ -7,7 +7,7 @@ const nextConfig = {
       return [
         {
           source: '/:path*',
-          destination: 'https://https://seabrookfinance.com/:path*',
+          destination: 'https://seabrookfinance.com/:path*',
           permanent: true,
         },
       ];
