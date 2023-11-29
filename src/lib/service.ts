@@ -95,8 +95,8 @@ export async function getFrontPage() {
 }
 
 export async function sendEmail(subject:string, body:any, mutationId = 'contact') {
-  const fromAddress = 'noreply@seabrook.com';
-  const toAddress = 'alexefthymiou@gmail.com';
+  const fromAddress = 'clientsupport@seabrookfinance.com';
+  const toAddress = 'clientsupport@seabrookfinance.com';
   const data = await fetchAPI(
     `
 		mutation SendEmail($input: SendEmailInput!) {

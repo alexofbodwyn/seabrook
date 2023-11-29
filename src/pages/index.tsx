@@ -24,7 +24,7 @@ export default function HomePage({ page, navigation, posts }: { page: any, navig
                 const itemContent = JSON.parse(item.attributesJSON)
 
                 return (
-                  <li className="w-1/2 text-2xl my-3 text-stone-600" key={`list-item-${index}`}>&#x2022;<span className="pl-4">{itemContent.content}</span></li>
+                  <li className="w-full md:w-1/2 text-2xl my-3 text-stone-600" key={`list-item-${index}`}>&#x2022;<span className="pl-4">{itemContent.content}</span></li>
                 )
               })
             }

@@ -41,7 +41,7 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
     <div className="flex flex-col min-h-[100vh]">
       <Header menuItems={navigation}/>
       <div className="bg-stone-200">
-        <div className="container mx-auto py-16">
+        <div className="container mx-auto px-8 py-16">
         <h3 className="text-[32px] font-bold text-stone-600">{page.title}</h3>
 
         <div dangerouslySetInnerHTML={{ __html: page.content }} className="max-w-[600px] w-full [&>p]:text-stone-600 [&>p]:text-xl [&>p]:my-8"></div>
@@ -101,7 +101,7 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
             ></textarea>
           </div>
 
-          <button className="text-white flex h-[48px] w-[215px] bg-stone-700 items-center justify-center ml-auto transition-all hover:bg-stone-500 active:bg-stone-400">SUBMIT</button>
+          <button disabled={thankYouMessage} className="text-white flex h-[48px] w-[215px] bg-stone-700 items-center justify-center ml-auto transition-all hover:bg-stone-500 active:bg-stone-400 disabled:bg-stone-500">SUBMIT</button>
           </form>
 
           {thankYouMessage && <h3 className="text-[22px] mt-4 text-stone-600">Message sent successfully! We'll do our best to contact you as soon as possible to address your enquiry.</h3>}
