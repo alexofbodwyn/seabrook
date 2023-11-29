@@ -132,6 +132,7 @@ export async function getPostBySlug(slug: string) {
     `query GetPost($id: ID = "") {
     post(id: $id, idType: SLUG) {
       content
+      excerpt
       featuredImage {
         node {
           sourceUrl

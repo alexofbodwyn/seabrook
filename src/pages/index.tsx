@@ -3,6 +3,7 @@ import { getFrontPage, getNavigation, getPosts } from "@/lib/service";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BlogSection from "@/components/blogSection";
+import { SEO } from "@/components/seo";
 
 export default function HomePage({ page, navigation, posts }: { page: any, navigation: any, posts: any }) {
 
@@ -12,6 +13,8 @@ export default function HomePage({ page, navigation, posts }: { page: any, navig
   const forthBlock = JSON.parse(page.blocks[3].attributesJSON)
 
   return (
+    <>
+    <SEO title="Seabrook Finance" description="A small London-based financial brokerage"/>
     <div className="flex flex-col min-h-[100vh]">
       <Header menuItems={navigation} pageTitle={page.title}/>
       <div className="bg-stone-200">
@@ -40,6 +43,7 @@ export default function HomePage({ page, navigation, posts }: { page: any, navig
       <BlogSection posts={posts} />
       <Footer />
     </div>
+    </>
   );
 }
 
@@ -57,18 +61,3 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 3600,
   };
 };
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const page = await getFrontPage()
-//   const navigation = await getNavigation()
-//   const posts = await getPosts(6)
-
-//   return {
-//     props: {
-//       page,
-//       navigation,
-//       posts,
-//     }
-//   };
-// };
-

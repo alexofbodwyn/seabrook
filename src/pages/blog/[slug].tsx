@@ -4,6 +4,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import BlogSection from "@/components/blogSection";
 import { useRouter } from "next/router";
+import { SEO } from "@/components/seo";
 
 import { getPosts, getPostBySlug, getNavigation } from "@/lib/service";
 
@@ -25,6 +26,8 @@ export default function PostDetails({ post, navigation, posts }: { post: any, na
   }
 
   return (
+    <>
+    <SEO title={`Seabrook Finance | ${post.title}`} type="article" description={post.excerpt}/>
     <div className="flex flex-col min-h-[100vh]">
       <Header menuItems={navigation} />
       <div className="bg-white">
@@ -36,6 +39,7 @@ export default function PostDetails({ post, navigation, posts }: { post: any, na
       <BlogSection posts={posts} />
       <Footer />
     </div>
+    </>
   );
 }
 

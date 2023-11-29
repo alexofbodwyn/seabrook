@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { sendEmail } from "@/lib/service";
 import FormLabel from "@/components/formLabel";
 import Footer from "@/components/footer";
+import { SEO } from "@/components/seo";
 
 export default function ContactUs({ page, navigation }: { page: any, navigation: any }) {
 
@@ -38,6 +39,8 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
   };
 
   return (
+    <>
+    <SEO title={`Seabrook Finance | ${page.title}`} description="A small London-based financial brokerage"/>
     <div className="flex flex-col min-h-[100vh]">
       <Header menuItems={navigation}/>
       <div className="bg-stone-200">
@@ -109,6 +112,7 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
       </div>
       <Footer />
     </div>
+    </>
   );
 }
 
