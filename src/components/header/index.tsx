@@ -43,22 +43,19 @@ export default function Header({ menuItems, pageTitle }: HeaderProps) {
             {!!menuItems &&
               menuItems.map((item: MenuItem, index: number) => {
                 let uri = item.connectedNode.node.uri;
-
-                if (uri.length > 1) {
-                  uri = uri.replace(/\//g, "");
-                }
+                let activeLink = pathname.length > 1 ? `/${pathname}/` : pathname;
 
                 if (!!uri) {
                   return (
                     <li className="ml-8" key={`mainNav-${index}`}>
                       <Link
                         className={
-                          pathname === uri
+                          activeLink === uri
                             ? "text-white text-xl underline underline-offset-2 transition-all hover:opacity-50"
                             : "text-white text-xl opacity-70 transition-all hover:opacity-50"
                         }
                         href={uri}
-                      >
+                      > 
                         {item.label}
                       </Link>
                     </li>
