@@ -32,8 +32,6 @@ export default function ContactUs({ page, navigation }: { page: any, navigation:
       emailContent
     );
 
-    console.log(data);
-
     setThankYouMessage(data.sendEmail.sent)
     
   };
